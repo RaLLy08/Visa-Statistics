@@ -1,0 +1,39 @@
+{
+  "name": "visa-statistics",
+  "version": "1.0.0",
+  "description": "true project",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "webpack",
+    "start": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaLLy08/Visa-Statistics.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RaLLy08/Visa-Statistics/issues"
+  },
+  "homepage": "https://github.com/RaLLy08/Visa-Statistics#readme",
+  "dependencies": {
+    "webpack": "4.41.2",
+    "webpack-cli": "3.3.10",
+    "@babel/core": "7.7.4",
+    "@babel/preset-env": "7.7.4",
+    "babel-loader": "8.0.6",
+    "@babel/plugin-proposal-class-properties": "7.7.4",
+    "html-webpack-plugin": "3.2.0",
+    "html-loader": "0.5.5",
+    "sass": "1.23.7",
+    "sass-loader": "8.0.0",
+    "css-loader": "3.2.0",
+    "mini-css-extract-plugin": "0.8.0",
+    "jest": "24.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.7.2"
+  }
+}
