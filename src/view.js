@@ -23,6 +23,10 @@ class View {
         wrapperTableList.classList.add('wrapper__table-list');
         wrapper.append(wrapperTableList);
 
+        const tableListTable = document.createElement('table');
+        tableListTable.classList.add('table-list__table');
+        wrapperTableList.append(tableListTable);
+
         this._root.append(wrapper);
     }
 }
