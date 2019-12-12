@@ -7,21 +7,21 @@ class View {
         const wrapper = document.createElement('div');
         wrapper.classList.add('wrapper');
         
-        const wrapperFirstBlock = document.createElement('div');
-        wrapperFirstBlock.classList.add('wrapper__block-generator');
-        wrapper.append(wrapperFirstBlock);
+        const wrapperGenerator = document.createElement('div');
+        wrapperGenerator.classList.add('wrapper__generator');
+        wrapper.append(wrapperGenerator);
 
-        const wrapperSecondBlock = document.createElement('div');
-        wrapperSecondBlock.classList.add('wrapper__block-simulator');
-        wrapper.append(wrapperSecondBlock);
+        const wrapperSimulator = document.createElement('div');
+        wrapperSimulator.classList.add('wrapper__simulator');
+        wrapper.append(wrapperSimulator);
 
-        const wrapperThirdBlock = document.createElement('div');
-        wrapperThirdBlock.classList.add('wrapper__block-add-human');
-        wrapper.append(wrapperThirdBlock);
+        const wrapperAddHuman = document.createElement('div');
+        wrapperAddHuman.classList.add('wrapper__add-human');
+        wrapper.append(wrapperAddHuman);
 
-        const wrapperFourthBlock = document.createElement('div');
-        wrapperFourthBlock.classList.add('wrapper__block-table-list');
-        wrapper.append(wrapperFourthBlock);
+        const wrapperTableList = document.createElement('div');
+        wrapperTableList.classList.add('wrapper__table-list');
+        wrapper.append(wrapperTableList);
 
         this._root.append(wrapper);
     }
