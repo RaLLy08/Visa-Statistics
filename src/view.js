@@ -33,6 +33,18 @@ class View {
         wrapperSimulator.classList.add('wrapper__simulator');
         wrapper.append(wrapperSimulator);
 
+        const simInputs = this.createInputs([
+            {type: 'number', placeholder: 'Min age'}, 
+            {type: 'text', placeholder: 'Min health'}, 
+            {type: 'number', placeholder: 'Max offenses'},
+            {type: 'number', placeholder: 'Min money'},
+            {type: 'number', placeholder: 'Max money'}
+        ]);
+        wrapperSimulator.append(...simInputs);
+
+        const simButton = this.buttonCreate('simulate', 'Simulate');
+        wrapperSimulator.append(simButton);
+
         const wrapperAddHuman = document.createElement('div');
         wrapperAddHuman.classList.add('wrapper__add-human');
         wrapper.append(wrapperAddHuman);
