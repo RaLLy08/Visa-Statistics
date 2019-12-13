@@ -1,6 +1,7 @@
 class View {
     constructor() {
         this._root = document.getElementById('root');
+
     }
 
     init = () => {
@@ -36,6 +37,24 @@ class View {
         button.textContent = name;
 
         return button;
+    }
+
+    createInputs = array => {
+        let inputs = [];
+
+        array.forEach(object => {
+            const input = document.createElement('input');
+            input.setAttribute('type', (object.type || 'text'));
+            input.setAttribute('placeholder', object.placeholder);
+            object.id && (input.setAttribute('id', object.id));
+            object.class && (input.classList.add(object.class));
+            object.value && (input.setAttribute('value', object.value));
+            object.required && (input.required = 'required');
+
+            inputs.push(input);
+        });
+
+        return inputs;
     }
 }
 
