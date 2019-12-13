@@ -29,6 +29,14 @@ class View {
 
         this._root.append(wrapper);
     }
+
+    buttonCreate (id, name) {
+        const button = document.createElement('button');
+        button.id = id;
+        button.textContent = name;
+
+        return button;
+    }
 }
 
 export default View;
