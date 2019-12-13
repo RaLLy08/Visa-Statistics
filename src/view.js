@@ -39,16 +39,22 @@ class View {
         return button;
     }
 
-    createInput = (object) => {
-        const input = document.createElement('input');
-        input.setAttribute('type', (object.type || 'text'));
-        input.setAttribute('placeholder', object.placeholder);
-        input.setAttribute('id', object.id);
-        input.classList.add(...object.classes);
-        input.setAttribute('value', (object.value || ''));
-        object.required ? input.setAttribute('required', object.required ) : '';
+    createInputs = array => {
+        let inputs = [];
 
-        return input;
+        array.forEach(object => {
+            const input = document.createElement('input');
+            input.setAttribute('type', (object.type || 'text'));
+            input.setAttribute('placeholder', object.placeholder);
+            object.id && (input.setAttribute('id', object.id));
+            object.class && (input.classList.add(object.class));
+            object.value && (input.setAttribute('value', object.value));
+            object.required && (input.required = 'required');
+
+            inputs.push(input);
+        });
+
+        return inputs;
     }
 }
 
