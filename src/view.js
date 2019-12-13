@@ -12,6 +12,23 @@ class View {
         wrapperGenerator.classList.add('wrapper__generator');
         wrapper.append(wrapperGenerator);
 
+        const generatorInputs = this.createInputs([
+            {type: 'number', placeholder: '2', required: true }, 
+            {type: 'number', placeholder: 'min age', required: true }, 
+            {type: 'number', placeholder: 'max age', required: true }, 
+            {type: 'text', placeholder: 'min health', required: true },
+            {type: 'text', placeholder: 'max health', required: true },
+            {type: 'number', placeholder: 'min money', required: true },
+            {type: 'number', placeholder: 'max money', required: true },
+            {type: 'number', placeholder: 'min offenses', required: true },
+            {type: 'number', placeholder: 'max offenses', required: true }
+        ]);
+
+        wrapperGenerator.append(...generatorInputs);
+
+        const buttonGenerator = this.buttonCreate('generate', 'Generate');
+        wrapperGenerator.append(buttonGenerator);
+        
         const wrapperSimulator = document.createElement('div');
         wrapperSimulator.classList.add('wrapper__simulator');
         wrapper.append(wrapperSimulator);
