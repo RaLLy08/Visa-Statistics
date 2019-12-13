@@ -1,6 +1,7 @@
 class View {
     constructor() {
         this._root = document.getElementById('root');
+
     }
 
     init = () => {
@@ -36,6 +37,18 @@ class View {
         button.textContent = name;
 
         return button;
+    }
+
+    createInput = (object) => {
+        const input = document.createElement('input');
+        input.setAttribute('type', (object.type || 'text'));
+        input.setAttribute('placeholder', object.placeholder);
+        input.setAttribute('id', object.id);
+        input.classList.add(...object.classes);
+        input.setAttribute('value', (object.value || ''));
+        object.required ? input.setAttribute('required', object.required ) : '';
+
+        return input;
     }
 }
 
