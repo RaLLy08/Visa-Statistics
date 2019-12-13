@@ -4,7 +4,7 @@
   "description": "true project",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --config=./jest.config.js",
     "build": "webpack",
     "start": "webpack-dev-server"
   },
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/RaLLy08/Visa-Statistics#readme",
   "dependencies": {
     "@babel/core": "7.7.4",
+    "@babel/cli": "7.7.5",
     "@babel/plugin-proposal-class-properties": "7.7.4",
     "@babel/preset-env": "7.7.4",
     "babel-loader": "8.0.6",
