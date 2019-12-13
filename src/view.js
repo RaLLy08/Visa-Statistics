@@ -36,14 +36,14 @@ class View {
             {type: 'number', placeholder: 'Max money'}
         ]);
 
+        wrapperGenerator.append(...generatorInputs);
+        wrapperSimulator.append(...simInputs);
+        
         const buttonGenerator = this.buttonCreate('generate', 'Generate');
         wrapperGenerator.append(buttonGenerator);
         
         const buttonSimulator = this.buttonCreate('simulate', 'Simulate');
         wrapperSimulator.append(buttonSimulator);
-
-        wrapperGenerator.append(...generatorInputs);
-        wrapperSimulator.append(...simInputs);
 
         const wrapperAddHuman = document.createElement('div');
         wrapperAddHuman.classList.add('wrapper__add-human');
@@ -69,7 +69,7 @@ class View {
         const TdDepFin = document.createElement('th');
         const TdDepPass = document.createElement('th');
         const TdDepGav = document.createElement('th');
-        
+
         TdCard.innerText = 'User Card';
         TdDepPol.innerText = 'Police Department';
         TdDepMed.innerText = 'Medical Department';
