@@ -15,6 +15,24 @@ class View {
         wrapperSimulator.classList.add('wrapper__simulator');
         wrapper.append(wrapperSimulator);
 
+        const simInputAge = this.createInput({placeholder: 'Min age', id: 'minAge', classes: ['simulator__input']});
+        wrapperSimulator.append(simInputAge);
+
+        const simInputHealth = this.createInput({placeholder: 'Min Health', id: 'minHealth', classes: ['simulator__input']});
+        wrapperSimulator.append(simInputHealth);
+
+        const simInputOffense = this.createInput({placeholder: 'Max Offense', id: 'maxOffense', classes: ['simulator__input']});
+        wrapperSimulator.append(simInputOffense);
+
+        const simInputMoneyMin = this.createInput({placeholder: 'Min Money', id: 'minMoney', classes: ['simulator__input']});
+        wrapperSimulator.append(simInputMoneyMin);
+
+        const simInputMoneyMax = this.createInput({placeholder: 'Max Money', id: 'maxMoney', classes: ['simulator__input']});
+        wrapperSimulator.append(simInputMoneyMax);
+
+        const simButton = this.buttonCreate('simulate', 'Simulate');
+        wrapperSimulator.append(simButton);
+
         const wrapperAddHuman = document.createElement('div');
         wrapperAddHuman.classList.add('wrapper__add-human');
         wrapper.append(wrapperAddHuman);
