@@ -12,6 +12,10 @@ class View {
         wrapperGenerator.classList.add('wrapper__generator');
         wrapper.append(wrapperGenerator);
 
+        const wrapperSimulator = document.createElement('div');
+        wrapperSimulator.classList.add('wrapper__simulator');
+        wrapper.append(wrapperSimulator);
+
         const generatorInputs = this.createInputs([
             {type: 'number', placeholder: '2', required: true }, 
             {type: 'number', placeholder: 'min age', required: true }, 
@@ -24,15 +28,6 @@ class View {
             {type: 'number', placeholder: 'max offenses', required: true }
         ]);
 
-        wrapperGenerator.append(...generatorInputs);
-
-        const buttonGenerator = this.buttonCreate('generate', 'Generate');
-        wrapperGenerator.append(buttonGenerator);
-        
-        const wrapperSimulator = document.createElement('div');
-        wrapperSimulator.classList.add('wrapper__simulator');
-        wrapper.append(wrapperSimulator);
-
         const simInputs = this.createInputs([
             {type: 'number', placeholder: 'Min age'}, 
             {type: 'text', placeholder: 'Min health'}, 
@@ -40,10 +35,15 @@ class View {
             {type: 'number', placeholder: 'Min money'},
             {type: 'number', placeholder: 'Max money'}
         ]);
-        wrapperSimulator.append(...simInputs);
 
-        const simButton = this.buttonCreate('simulate', 'Simulate');
-        wrapperSimulator.append(simButton);
+        const buttonGenerator = this.buttonCreate('generate', 'Generate');
+        wrapperGenerator.append(buttonGenerator);
+        
+        const buttonSimulator = this.buttonCreate('simulate', 'Simulate');
+        wrapperSimulator.append(buttonSimulator);
+
+        wrapperGenerator.append(...generatorInputs);
+        wrapperSimulator.append(...simInputs);
 
         const wrapperAddHuman = document.createElement('div');
         wrapperAddHuman.classList.add('wrapper__add-human');
@@ -69,6 +69,7 @@ class View {
         const TdDepFin = document.createElement('th');
         const TdDepPass = document.createElement('th');
         const TdDepGav = document.createElement('th');
+        
         TdCard.innerText = 'User Card';
         TdDepPol.innerText = 'Police Department';
         TdDepMed.innerText = 'Medical Department';
