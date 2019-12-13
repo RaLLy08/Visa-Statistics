@@ -1,16 +1,15 @@
 class View {
     constructor() {
         this._root = document.getElementById('root');
-        this._wrapperGenerator = null;
     }
 
     init = () => {
         const wrapper = document.createElement('div');
         wrapper.classList.add('wrapper');
         
-        this._wrapperGenerator = document.createElement('div');
-        this._wrapperGenerator.classList.add('wrapper__generator');
-        wrapper.append(this._wrapperGenerator);
+        const wrapperGenerator = document.createElement('div');
+        wrapperGenerator.classList.add('wrapper__generator');
+        wrapper.append(wrapperGenerator);
 
         const generatorInputs = this.createInputs([
             {type: 'number', placeholder: '2', required: true }, 
@@ -24,10 +23,10 @@ class View {
             {type: 'number', placeholder: 'max offenses', required: true }
         ]);
 
-        this._wrapperGenerator.append(...generatorInputs);
+        wrapperGenerator.append(...generatorInputs);
 
         const buttonGenerator = this.buttonCreate('generate', 'Generate');
-        this._wrapperGenerator.append(buttonGenerator);
+        wrapperGenerator.append(buttonGenerator);
         
         const wrapperSimulator = document.createElement('div');
         wrapperSimulator.classList.add('wrapper__simulator');
