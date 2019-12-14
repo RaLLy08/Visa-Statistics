@@ -1,7 +1,6 @@
 class View {
     constructor() {
         this._root = document.getElementById('root');
-
     }
 
     init = () => {
@@ -83,6 +82,20 @@ class View {
         headTr.append(TdDepPass);
         headTr.append(TdDepGav);
 
+        // const tableBody = document.createElement('tbody'); // другая задача блокировала мою, это макет.
+        // tableListTable.append(tableBody);
+        // [
+        //     {age: 12, health: 80, money: 500, offenses: 3, 
+        //     FandLName: 'Vasiya Pupkin', departaments: 0, section: 0, passed: 0, index: 0,
+        //     gender: 'man'},
+        //     {age: 37, health: 90, money: 500, offenses: 3, 
+        //     FandLName: 'Asya Pupkina', departaments: 0, section: 0, passed: 1, index: 0,
+        //     gender: 'woman'}
+        // ] такой массив будет принимат constructRow([array])
+
+        const rows = this.consructRows(array);
+        tableBody.append(...rows);
+
         this._root.append(wrapper);
     }
 
@@ -105,11 +118,38 @@ class View {
             object.class && (input.classList.add(object.class));
             object.value && (input.setAttribute('value', object.value));
             object.required && (input.required = 'required');
-
+            object.name && (input.setAttribute('name', object.name));
+            object.text && (input.innerText = object.text);
+            
             inputs.push(input);
         });
 
         return inputs;
+    }
+
+    consructRows = array => {
+        let persons = [];
+
+        array.forEach(person => {
+            let row = document.createElement('tr');
+            let userCard = document.createElement('td');
+            userCard.innerText = `Age:${person.age}, ${person.FandLName}, health:${person.health}%, money:${person.money}$, gender:${person.gender}`;
+            person.passed === 1 && (userCard.style.border = '1px solid #FF9305'); 
+            persons.push(userCard);
+            let policeDep = document.createElement('td');
+            policeDep.append(this.createLights(2, 1));
+            let medicalDep = document.createElement('td');
+            medicalDep.append(this.createLights(2, 2));
+            let financeDep = document.createElement('td');
+            financeDep.append(this.createLights(2, 3));
+            let passportDep = document.createElement('td');
+            passportDep.append(this.createLights(2, 4));
+            let embassy = document.createElement('td');
+            embassy.append(this.createLights(1, 5));
+            persons.push(row, userCard, policeDep, medicalDep, financeDep, passportDep, embassy);
+        });
+                       
+        return persons;
     }
 }
 
