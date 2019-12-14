@@ -17,7 +17,7 @@ class View {
         wrapper.append(wrapperSimulator);
 
         const generatorInputs = this.createInputs([
-            {type: 'number', placeholder: '2', required: true }, 
+            {type: 'number', placeholder: 'number of people', required: true }, 
             {type: 'number', placeholder: 'min age', required: true }, 
             {type: 'number', placeholder: 'max age', required: true }, 
             {type: 'text', placeholder: 'min health', required: true },
