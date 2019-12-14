@@ -25,11 +25,12 @@ class Controller {
 
     createPerson = (age, health, money, offenses, i) => {
         let person = {
+            FandLname: "",
+            gender: "",
             age: age,
             health: health,
             money: money,
             offenses: offenses,
-            FandLname: "",
             departament: 0,
             section: 0,
             passed: 0,
