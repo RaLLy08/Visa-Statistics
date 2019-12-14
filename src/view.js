@@ -3,7 +3,8 @@ class View {
         this._root = document.getElementById('root');
 
     }
-
+    
+    
     init = () => {
         const wrapper = document.createElement('div');
         wrapper.classList.add('wrapper');
