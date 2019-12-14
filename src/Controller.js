@@ -12,7 +12,7 @@ class Controller {
         
     }
 
-    setRandomConfig = (value, inputs) => {
+    createRandomPersons = (value, inputs) => {
         for (let i = 0; i < value; i++ ) {
             let age = Math.floor(Math.random() * (inputs.maxAge - inputs.minAge) + inputs.minAge);
             let health = Math.floor(Math.random() * (inputs.maxHealth - inputs.minHealth) + inputs.minHealth);
