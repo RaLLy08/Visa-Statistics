@@ -111,6 +111,25 @@ class View {
 
         return inputs;
     }
+
+    createLights = (how, id) => {
+        const lights = document.createElement('ul');
+        lights.setAttribute('id', id);
+        lights.classList.add('indicator__lights');
+        
+        for (let i = 0; i < how; i++) {
+            const round = document.createElement('li');
+            lights.append(round);
+        }
+
+        return lights;
+    }
+
+    changeLightColor = (whichId, childNode, color = true) => {
+        const which = document.getElementById(whichId).childNodes[childNode - 1];
+
+        color ? which.style.backgroundColor = '#33ff00' : which.style.backgroundColor = '#ff2626';
+    }
 }
 
 export default View;
