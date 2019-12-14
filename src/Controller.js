@@ -9,7 +9,7 @@ class Controller {
 
     init = () => {
         this._view.init();
-        this.setRandomConfig(10);
+        
     }
 
     setRandomConfig = (value, inputs) => {
@@ -22,8 +22,6 @@ class Controller {
             this.createPerson(age, health, money, offenses, i);
         }
     }
-
-   
 }
 
 export default Controller;
