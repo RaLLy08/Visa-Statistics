@@ -9,18 +9,21 @@ class Controller {
 
     init = () => {
         this._view.init();
+        this.setRandomConfig(10);
     }
 
     setRandomConfig = (value, inputs) => {
-        for (let i = 0; i <= value; index++) {
-            age = Math.floor(Math.random() * (inputs.maxAge - inputs.minAge) + inputs.minAge);
-            health = Math.floor(Math.random() * (inputs.maxHealth - inputs.minHealth) + inputs.minHealth);
-            money = Math.floor(Math.random() * (inputs.maxMoney - inputs.minMoney) + inputs.minMoney);
-            offenses = Math.floor(Math.random() * (inputs.maxOffenses - inputs.minOffenses) + inputs.minOffenses);
+        for (let i = 0; i < value; i++ ) {
+            let age = Math.floor(Math.random() * (inputs.maxAge - inputs.minAge) + inputs.minAge);
+            let health = Math.floor(Math.random() * (inputs.maxHealth - inputs.minHealth) + inputs.minHealth);
+            let money = Math.floor(Math.random() * (inputs.maxMoney - inputs.minMoney) + inputs.minMoney);
+            let offenses = Math.floor(Math.random() * (inputs.maxOffenses - inputs.minOffenses) + inputs.minOffenses);
+            console.log(i);
             
-            this.createPerson(age, health, money, offenses);
+            this.createPerson(age, health, money, offenses, i);
         }
     }
+
    
 }
 
