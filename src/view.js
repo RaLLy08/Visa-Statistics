@@ -142,6 +142,7 @@ class View {
             
             if (object.type === 'radio') {
                 const label = document.createElement('label');
+
                 label.innerText = object.text;
 
                 inputs.push(label);
@@ -153,6 +154,7 @@ class View {
 
     tableBodyCreate = id => {
         const tableBody = document.createElement('tbody');
+
         tableBody.id = id;
     
         return tableBody;
