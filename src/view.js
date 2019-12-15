@@ -38,7 +38,7 @@ class View {
 
         wrapperGenerator.append(...generatorInputs);
         wrapperSimulator.append(...simInputs);
-        
+
         const buttonGenerator = this.buttonCreate('generate', 'Generate');
         wrapperGenerator.append(buttonGenerator);
         
@@ -48,6 +48,22 @@ class View {
         const wrapperAddHuman = document.createElement('div');
         wrapperAddHuman.classList.add('wrapper__add-human');
         wrapper.append(wrapperAddHuman);
+
+        const addInputs = this.createInputs([
+            {type: 'text', placeholder: 'Name', required: true},
+            {type: 'text', placeholder: 'Surname', required: true},
+            {type: 'radio', id: 'male', text: 'Male'},
+            {type: 'radio', id: 'female', text: 'Female'},
+            {type: 'number', placeholder: 'Age', required: true},
+            {type: 'text', placeholder: 'Health', required: true},
+            {type: 'number', placeholder: 'Money', required: true},
+            {type: 'number', placeholder: 'Offenses', required: true},
+        ]);
+
+        wrapperAddHuman.append(...addInputs);
+
+        const buttonAddPeople = this.buttonCreate('add-person', 'Add Person');
+        wrapperAddHuman.append(buttonAddPeople);
 
         const wrapperTableList = document.createElement('div');
         wrapperTableList.classList.add('wrapper__table-list');
