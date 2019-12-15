@@ -1,7 +1,10 @@
+import Facerator from 'fakerator'; 
+
 class Controller {
     constructor(view, model) {
         this._model = model;
         this._view = view;
+        this._fakerator = new Facerator;
 
         this.init();
     }
@@ -15,7 +18,6 @@ class Controller {
     }
 
     createRandomPersons = inputs => {
-        let fakerator = require('fakerator')();
 
         for (let i = 0; i < inputs.numOfPeople; i++ ) {
             let age = Math.floor(Math.random() * (inputs.maxAge - inputs.minAge) + inputs.minAge);
@@ -26,9 +28,9 @@ class Controller {
             let FandLname = '';
 
             if (gender === 'female') {
-                FandLname = fakerator.names.nameF();
+                FandLname = this._fakerator.names.nameF();
             } else {
-                FandLname = fakerator.names.nameM();
+                FandLname = this._fakerator.names.nameM();
             }
             
             this.createPerson(age, health, money, offenses, gender, FandLname, i);
@@ -45,7 +47,7 @@ class Controller {
             health: health,
             money: money,
             offenses: offenses,
-            index: i,
+            index: i
         };
 
         this._model.addPerson(person);
