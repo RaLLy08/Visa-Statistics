@@ -9,10 +9,13 @@ class Controller {
     init = () => {
         this._view.init();
         
+        this._view.onSubmitGenerate(this.createRandomPersons);
+        this._view.onSubmitSimulate(el => console.log(el));
+        this._view.onSubmitAddHuman(this.createOnePerson);
     }
 
     createRandomPersons = inputs => {
-        for (let i = 0; i < inputs.value; i++ ) {
+        for (let i = 0; i < inputs.numOfPeople; i++ ) {
             let age = Math.floor(Math.random() * (inputs.maxAge - inputs.minAge) + inputs.minAge);
             let health = Math.floor(Math.random() * (inputs.maxHealth - inputs.minHealth) + inputs.minHealth);
             let money = Math.floor(Math.random() * (inputs.maxMoney - inputs.minMoney) + inputs.minMoney);
@@ -53,6 +56,7 @@ class Controller {
         let FandLname = `${inputs.firstName}` + ` ${inputs.lastName}`;
 
         this.createPerson(inputs.age, inputs.health, inputs.money, inputs.offenses, inputs.gender, FandLname, index);
+        
         this.refreshTable();
     }
 
@@ -63,6 +67,8 @@ class Controller {
     }
 
     refreshTable = () => {
+        this._view.tableBodyRemove('persons__list');
+        this._view.tableBodyCreate('persons__list');
         this._view.rowsConstucting(this._model.getPersons());
     }
 

@@ -1,6 +1,7 @@
 class View {
     constructor() {
         this._root = document.getElementById('root');
+        this.tableListTable = null;
         this.tableBody = null;
     }
     
@@ -60,8 +61,8 @@ class View {
         ]);
 
         const addInputs = this.inputsCreating([
-            {type: 'text', name: 'name', placeholder: 'Name', required: true},
-            {type: 'text', name: 'surname', placeholder: 'Surname', required: true},
+            {type: 'text', name: 'firstName', placeholder: 'Name', required: true},
+            {type: 'text', name: 'lastName', placeholder: 'Surname', required: true},
             {type: 'radio', value: 'male', name: 'gender', text: 'Male'},
             {type: 'radio', value: 'female', name: 'gender', text: 'Female'},
             {type: 'number', name: 'age', placeholder: 'Age', required: true},
@@ -91,14 +92,14 @@ class View {
         wrapperTableList.classList.add('wrapper__table-list');
         wrapper.append(wrapperTableList);
 
-        const tableListTable = document.createElement('table');
+        this.tableListTable = document.createElement('table');
 
-        tableListTable.classList.add('table-list__table');
-        wrapperTableList.append(tableListTable);
+        this.tableListTable.classList.add('table-list__table');
+        wrapperTableList.append(this.tableListTable);
 
         const tableHead = document.createElement('thead');
 
-        tableListTable.append(tableHead);
+        this.tableListTable.append(tableHead);
 
         const headTr = document.createElement('tr');
 
@@ -125,7 +126,6 @@ class View {
         headTr.append(TdDepGav);
 
         this.tableBody = this.tableBodyCreate('persons__list');
-        tableListTable.append(this.tableBody);
         
         this._root.append(wrapper);
     }
@@ -168,11 +168,11 @@ class View {
     }
 
     tableBodyCreate = id => {
-        const tableBody = document.createElement('tbody');
+        this.tableBody = document.createElement('tbody');
 
-        tableBody.id = id;
+        this.tableBody.id = id;
     
-        return tableBody;
+        this.tableListTable.append(this.tableBody);
     }
 
     tableBodyRemove = id => {
@@ -282,6 +282,11 @@ class View {
                 let map = new Map();
 
                 for (let i = 0; i < addHumanForm.elements.length - 1; i++) {
+                    
+                    if (addHumanForm.elements[i].name === 'gender' && !addHumanForm.elements[i].checked) {
+                        continue;
+                    }
+
                     map.set(addHumanForm.elements[i].name, addHumanForm.elements[i].value);
                 }
 
