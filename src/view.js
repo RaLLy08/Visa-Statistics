@@ -172,7 +172,7 @@ class View {
             const userCard = document.createElement('td');
 
             userCard.id = person.index;
-            userCard.innerText = `Age:${person.age}, ${person.FandLName}, health:${person.health}%, money:${person.money}$, offenses:${person.offenses}, gender:${person.gender}`; 
+            userCard.innerText = `Age:${person.age}, ${person.FandLname}, health:${person.health}%, money:${person.money}$, offenses:${person.offenses}, gender:${person.gender}`; 
             const policeDep = document.createElement('td');
 
             policeDep.append(this.lightsCreating(2, +('1' + `${person.index}`)));
