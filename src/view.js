@@ -86,7 +86,7 @@ class View {
         this._root.append(wrapper);
     }
 
-    buttonCreate (id, name) {
+    buttonCreate = (id, name) => {
         const button = document.createElement('button');
         button.id = id;
         button.textContent = name;
