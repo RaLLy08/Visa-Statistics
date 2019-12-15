@@ -20,6 +20,8 @@ class Controller {
             
             this.createPerson(age, health, money, offenses, i);
         }
+        
+        this._view.rowsConstucting(this._model.getPersons());
     }
 
     createPerson = (age, health, money, offenses, i) => {
@@ -34,6 +36,13 @@ class Controller {
         };
 
         this._model.addPerson(person);
+    }
+
+    createOnePerson = inputs => {
+        let index = this._model.getPersons().length;
+
+        this.createPerson(inputs.age, inputs.health, inputs.money, inputs.offenses, index);
+        this._view.rowsConstucting(this._model.getPersons());
     }
 
     lightsChanging = (index, departament, section, failed = true) => {   
