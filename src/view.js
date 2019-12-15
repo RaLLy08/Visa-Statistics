@@ -1,6 +1,7 @@
 class View {
     constructor() {
         this._root = document.getElementById('root');
+        this.tableBody = null;
     }
     
     init = () => {
@@ -46,8 +47,8 @@ class View {
         const addInputs = this.inputsCreating([
             {type: 'text', placeholder: 'Name', required: true},
             {type: 'text', placeholder: 'Surname', required: true},
-            {type: 'radio', id: 'male', text: 'Male'},
-            {type: 'radio', id: 'female', text: 'Female'},
+            {type: 'radio', value: 'male', name: 'gender', text: 'Male'},
+            {type: 'radio', value: 'female', name: 'gender', text: 'Female'},
             {type: 'number', placeholder: 'Age', required: true},
             {type: 'text', placeholder: 'Health', required: true},
             {type: 'number', placeholder: 'Money', required: true},
@@ -108,6 +109,9 @@ class View {
         headTr.append(TdDepPass);
         headTr.append(TdDepGav);
 
+        this.tableBody = this.tableBodyCreate('persons__list');
+        tableListTable.append(this.tableBody);
+        
         this._root.append(wrapper);
     }
 
@@ -127,18 +131,37 @@ class View {
             const input = document.createElement('input');
 
             input.setAttribute('type', (object.type || 'text'));
-            input.setAttribute('placeholder', object.placeholder);
+            object.placeholder && input.setAttribute('placeholder', object.placeholder);
             object.id && (input.setAttribute('id', object.id));
             object.class && (input.classList.add(object.class));
             object.value && (input.setAttribute('value', object.value));
             object.required && (input.required = 'required');
             object.name && (input.setAttribute('name', object.name));
-            object.text && (input.innerText = object.text);
-            
+
             inputs.push(input);
+            
+            if (object.type === 'radio') {
+                const label = document.createElement('label');
+                label.innerText = object.text;
+
+                inputs.push(label);
+            }
         });
 
         return inputs;
+    }
+
+    tableBodyCreate = id => {
+        const tableBody = document.createElement('tbody');
+        tableBody.id = id;
+    
+        return tableBody;
+    }
+
+    tableBodyRemove = id => {
+        const tableBody = document.getElementById(id);
+        
+        tableBody.remove();
     }
 
     rowsConstucting = array => {
@@ -150,23 +173,24 @@ class View {
             person.passed === 1 && (userCard.style.border = '1px solid #FF9305'); 
             const policeDep = document.createElement('td');
 
-            policeDep.append(this.lightsCreating(2, 1));
+            policeDep.append(this.lightsCreating(2, +('1' + `${person.index}`)));
             const medicalDep = document.createElement('td');
 
-            medicalDep.append(this.lightsCreating(2, 2));
+            medicalDep.append(this.lightsCreating(2, +('2' + `${person.index}`)));
             const financeDep = document.createElement('td');
 
-            financeDep.append(this.lightsCreating(2, 3));
+            financeDep.append(this.lightsCreating(2, +('3' + `${person.index}`)));
             const passportDep = document.createElement('td');
 
-            passportDep.append(this.lightsCreating(2, 4));
+            passportDep.append(this.lightsCreating(2, +('4' + `${person.index}`)));
             const embassy = document.createElement('td');
 
-            embassy.append(this.lightsCreating(1, 5));
+            embassy.append(this.lightsCreating(1, +('5' + `${person.index}`)));
 
-            const personRow = [row, userCard, policeDep, medicalDep, financeDep, passportDep, embassy];
-            
-            this.tableBody.append(...personRow);
+            const personRow = [userCard, policeDep, medicalDep, financeDep, passportDep, embassy];
+
+            row.append(...personRow);
+            this.tableBody.append(row);
         });
     }
     
@@ -188,14 +212,12 @@ class View {
     changeLightColor = (whichId, childNode, color = true) => {
         const which = document.getElementById(whichId);
 
-        if(!color) {
-            which.childNodes[childNode - 1].style.backgroundColor = '#ff2626';
-
-            return;
-        }
-
         for (let i = 0; i < childNode; i++) {
             which.childNodes[i].style.backgroundColor = '#33ff00';   
+        }
+
+        if(!color) {
+            which.childNodes[childNode - 1].style.backgroundColor = '#ff2626';
         }
     }
 }
