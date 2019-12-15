@@ -38,6 +38,13 @@ class Controller {
 
         this._model.addPerson(person);
     }
+
+    lightsChanging = (index, departament, section, failed = true) => {   
+        let rowAndStr = +(`${departament}` + `${index}`);
+        
+        this._view.changeLightColor(rowAndStr, section, failed);
+        
+    }
 }
 
 export default Controller;
