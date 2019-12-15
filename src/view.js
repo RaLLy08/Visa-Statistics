@@ -14,62 +14,77 @@ class View {
         wrapperGenerator.classList.add('wrapper__generator');
         wrapper.append(wrapperGenerator);
 
+        const generatorForm = document.createElement('form');
+
+        generatorForm.id = 'genForm';
+        wrapperGenerator.append(generatorForm);
+
         const wrapperSimulator = document.createElement('div');
 
         wrapperSimulator.classList.add('wrapper__simulator');
         wrapper.append(wrapperSimulator);
+
+        const simulatorForm = document.createElement('form');
+
+        simulatorForm.id = 'simForm';
+        wrapperSimulator.append(simulatorForm);
 
         const wrapperAddHuman = document.createElement('div');
 
         wrapperAddHuman.classList.add('wrapper__add-human');
         wrapper.append(wrapperAddHuman);
 
+        const addHumanForm = document.createElement('form');
+
+        addHumanForm.id = 'addHumanForm';
+        wrapperAddHuman.append(addHumanForm);
+
         const generatorInputs = this.inputsCreating([
-            {type: 'number', placeholder: 'number of people', required: true }, 
-            {type: 'number', placeholder: 'min age', required: true }, 
-            {type: 'number', placeholder: 'max age', required: true }, 
-            {type: 'text', placeholder: 'min health', required: true },
-            {type: 'text', placeholder: 'max health', required: true },
-            {type: 'number', placeholder: 'min money', required: true },
-            {type: 'number', placeholder: 'max money', required: true },
-            {type: 'number', placeholder: 'min offenses', required: true },
-            {type: 'number', placeholder: 'max offenses', required: true }
+            {type: 'number', name: 'numOfPeople', placeholder: 'Number of people', required: true }, 
+            {type: 'number', name: 'minAge', placeholder: 'Min age', required: true }, 
+            {type: 'number', name: 'maxAge', placeholder: 'Max age', required: true }, 
+            {type: 'text', name: 'minHealth', placeholder: 'Min health', required: true },
+            {type: 'text', name: 'maxHealth', placeholder: 'Max health', required: true },
+            {type: 'number', name: 'minMoney', placeholder: 'Min money', required: true },
+            {type: 'number', name: 'maxMoney', placeholder: 'Max money', required: true },
+            {type: 'number', name: 'minOffenses', placeholder: 'Min offenses', required: true },
+            {type: 'number', name: 'maxOffenses', placeholder: 'max offenses', required: true }
         ]);
 
         const simInputs = this.inputsCreating([
-            {type: 'number', placeholder: 'Min age'}, 
-            {type: 'text', placeholder: 'Min health'}, 
-            {type: 'number', placeholder: 'Max offenses'},
-            {type: 'number', placeholder: 'Min money'},
-            {type: 'number', placeholder: 'Max money'}
+            {type: 'number', name: 'minAge', placeholder: 'Min age'}, 
+            {type: 'text', name: 'minHealth', placeholder: 'Min health'}, 
+            {type: 'number', name: 'maxOffenses', placeholder: 'Max offenses'},
+            {type: 'number', name: 'minMoney', placeholder: 'Min money'},
+            {type: 'number', name: 'maxMoney', placeholder: 'Max money'}
         ]);
 
         const addInputs = this.inputsCreating([
-            {type: 'text', placeholder: 'Name', required: true},
-            {type: 'text', placeholder: 'Surname', required: true},
+            {type: 'text', name: 'name', placeholder: 'Name', required: true},
+            {type: 'text', name: 'surname', placeholder: 'Surname', required: true},
             {type: 'radio', value: 'male', name: 'gender', text: 'Male'},
             {type: 'radio', value: 'female', name: 'gender', text: 'Female'},
-            {type: 'number', placeholder: 'Age', required: true},
-            {type: 'text', placeholder: 'Health', required: true},
-            {type: 'number', placeholder: 'Money', required: true},
-            {type: 'number', placeholder: 'Offenses', required: true},
+            {type: 'number', name: 'age', placeholder: 'Age', required: true},
+            {type: 'text', name: 'health', placeholder: 'Health', required: true},
+            {type: 'number', name: 'money', placeholder: 'Money', required: true},
+            {type: 'number', name: 'offenses', placeholder: 'Offenses', required: true},
         ]);
 
-        wrapperGenerator.append(...generatorInputs);
-        wrapperSimulator.append(...simInputs);
-        wrapperAddHuman.append(...addInputs);
+        generatorForm.append(...generatorInputs);
+        simulatorForm.append(...simInputs);
+        addHumanForm.append(...addInputs);
 
         const buttonGenerator = this.buttonCreating('generate', 'Generate');
 
-        wrapperGenerator.append(buttonGenerator);
+        generatorForm.append(buttonGenerator);
         
         const buttonSimulator = this.buttonCreating('simulate', 'Simulate');
 
-        wrapperSimulator.append(buttonSimulator);
+        simulatorForm.append(buttonSimulator);
 
-        const buttonAddPeople = this.buttonCreating('add-person', 'Add Person');
+        const buttonAddPeople = this.buttonCreating('addHuman', 'Add Person');
 
-        wrapperAddHuman.append(buttonAddPeople);
+        addHumanForm.append(buttonAddPeople);
 
         const wrapperTableList = document.createElement('div');
 
@@ -131,12 +146,12 @@ class View {
             const input = document.createElement('input');
 
             input.setAttribute('type', (object.type || 'text'));
-            object.placeholder && input.setAttribute('placeholder', object.placeholder);
             object.id && (input.setAttribute('id', object.id));
             object.class && (input.classList.add(object.class));
-            object.value && (input.setAttribute('value', object.value));
-            object.required && (input.required = 'required');
+            object.value ? input.setAttribute('value', object.value) : input.setAttribute('value', '');
             object.name && (input.setAttribute('name', object.name));
+            object.placeholder && input.setAttribute('placeholder', object.placeholder);
+            object.required && (input.required = 'required');
 
             inputs.push(input);
             
@@ -220,6 +235,60 @@ class View {
 
         if(!color) {
             which.childNodes[childNode - 1].style.backgroundColor = '#ff2626';
+        }
+    }
+
+    onSubmitGenerate = callback => {
+        generate.onclick = e => {
+            e.preventDefault();
+
+            if (genForm.checkValidity()) {
+                let map = new Map();
+
+                for (let i = 0; i < genForm.elements.length - 1; i++) {
+                    map.set(genForm.elements[i].name, genForm.elements[i].value);
+                }
+
+                let genObj = Object.fromEntries(map.entries());
+
+                callback(genObj);
+            }
+        }
+    }
+
+    onSubmitSimulate = callback => {
+        simulate.onclick = e => {
+            e.preventDefault();
+
+            if (simForm.checkValidity()) {
+                let map = new Map();
+
+                for (let i = 0; i < simForm.elements.length - 1; i++) {
+                    map.set(simForm.elements[i].name, simForm.elements[i].value);
+                }
+
+                let simObj = Object.fromEntries(map.entries());
+
+                callback(simObj);
+            }
+        }
+    }
+
+    onSubmitAddHuman = callback => {
+        addHuman.onclick = e => {
+            e.preventDefault();
+
+            if (addHumanForm.checkValidity()) {
+                let map = new Map();
+
+                for (let i = 0; i < addHumanForm.elements.length - 1; i++) {
+                    map.set(addHumanForm.elements[i].name, addHumanForm.elements[i].value);
+                }
+
+                let addHumanObj = Object.fromEntries(map.entries());
+
+                callback(addHumanObj);
+            }
         }
     }
 }
