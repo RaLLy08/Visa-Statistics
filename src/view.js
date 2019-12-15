@@ -122,6 +122,7 @@ class View {
         array.forEach(person => {
             const row = document.createElement('tr');
             const userCard = document.createElement('td');
+            
             userCard.innerText = `Age:${person.age}, ${person.FandLName}, health:${person.health}%, money:${person.money}$, gender:${person.gender}`;
             person.passed === 1 && (userCard.style.border = '1px solid #FF9305'); 
             const policeDep = document.createElement('td');
@@ -137,7 +138,7 @@ class View {
 
             passportDep.append(this.createLights(2, 4));
             const embassy = document.createElement('td');
-            
+
             embassy.append(this.createLights(1, 5));
 
             persons.push(row, userCard, policeDep, medicalDep, financeDep, passportDep, embassy);
