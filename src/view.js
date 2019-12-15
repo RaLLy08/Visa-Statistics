@@ -2,7 +2,7 @@ class View {
     constructor() {
         this._root = document.getElementById('root');
     }
-
+    
     init = () => {
         const wrapper = document.createElement('div');
         wrapper.classList.add('wrapper');
@@ -16,7 +16,7 @@ class View {
         wrapper.append(wrapperSimulator);
 
         const generatorInputs = this.createInputs([
-            {type: 'number', placeholder: '2', required: true }, 
+            {type: 'number', placeholder: 'number of people', required: true }, 
             {type: 'number', placeholder: 'min age', required: true }, 
             {type: 'number', placeholder: 'max age', required: true }, 
             {type: 'text', placeholder: 'min health', required: true },
@@ -88,7 +88,7 @@ class View {
         this._root.append(wrapper);
     }
 
-    buttonCreate (id, name) {
+    buttonCreate = (id, name) => {
         const button = document.createElement('button');
         button.id = id;
         button.textContent = name;
@@ -145,6 +145,25 @@ class View {
         });
                        
         return persons;
+    }
+    
+    createLights = (how, id) => {
+        const lights = document.createElement('ul');
+        lights.setAttribute('id', id);
+        lights.classList.add('indicator__lights');
+        
+        for (let i = 0; i < how; i++) {
+            const round = document.createElement('li');
+            lights.append(round);
+        }
+
+        return lights;
+    }
+
+    changeLightColor = (whichId, childNode, color = true) => {
+        const which = document.getElementById(whichId).childNodes[childNode - 1];
+
+        color ? which.style.backgroundColor = '#33ff00' : which.style.backgroundColor = '#ff2626';
     }
 }
 
