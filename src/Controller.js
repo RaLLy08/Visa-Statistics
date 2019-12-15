@@ -18,8 +18,15 @@ class Controller {
             let money = Math.floor(Math.random() * (inputs.maxMoney - inputs.minMoney) + inputs.minMoney);
             let offenses = Math.floor(Math.random() * (inputs.maxOffenses - inputs.minOffenses) + inputs.minOffenses);
             let gender = ['male', 'female'][Math.floor(Math.random() * (2) + 0)];
+            let fakerator = require('fakerator')();
             let FandLname = '';
 
+            if (gender === 'female') {
+                FandLname = fakerator.names.nameF();
+            } else {
+                FandLname = fakerator.names.nameM();
+            }
+            
             this.createPerson(age, health, money, offenses, gender, FandLname, i);
         }
         
