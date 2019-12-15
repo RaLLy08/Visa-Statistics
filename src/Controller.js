@@ -22,6 +22,22 @@ class Controller {
             this.createPerson(age, health, money, offenses, i);
         }
     }
+
+    createPerson = (age, health, money, offenses, i) => {
+        let person = {
+            FandLname: "",
+            gender: "",
+            age: age,
+            health: health,
+            money: money,
+            offenses: offenses,
+            departament: 0,
+            section: 0,
+            passed: 0,
+            index: i,
+        }
+        this._model.addPerson(person);
+    }
 }
 
 export default Controller;
