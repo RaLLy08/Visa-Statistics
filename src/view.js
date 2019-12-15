@@ -222,6 +222,10 @@ class View {
             which.childNodes[childNode - 1].style.backgroundColor = '#ff2626';
         }
     }
+
+    markPerson = id => {
+        document.getElementById(`${id}`).style.border = '1px solid #FF9305';
+    }
 }
 
 export default View;
