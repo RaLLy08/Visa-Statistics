@@ -126,9 +126,17 @@ class View {
     }
 
     changeLightColor = (whichId, childNode, color = true) => {
-        const which = document.getElementById(whichId).childNodes[childNode - 1];
+        const which = document.getElementById(whichId);
 
-        color ? which.style.backgroundColor = '#33ff00' : which.style.backgroundColor = '#ff2626';
+        if(!color) {
+            which.childNodes[childNode - 1].style.backgroundColor = '#ff2626';
+
+            return;
+        }
+
+        for (let i = 0; i < childNode; i++) {
+            which.childNodes[i].style.backgroundColor = '#33ff00';   
+        }
     }
 }
 
