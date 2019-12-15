@@ -11,8 +11,8 @@ class Controller {
         
     }
 
-    createRandomPersons = (value, inputs) => {
-        for (let i = 0; i < value; i++ ) {
+    createRandomPersons = inputs => {
+        for (let i = 0; i < inputs.value; i++ ) {
             let age = Math.floor(Math.random() * (inputs.maxAge - inputs.minAge) + inputs.minAge);
             let health = Math.floor(Math.random() * (inputs.maxHealth - inputs.minHealth) + inputs.minHealth);
             let money = Math.floor(Math.random() * (inputs.maxMoney - inputs.minMoney) + inputs.minMoney);
