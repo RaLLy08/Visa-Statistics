@@ -131,20 +131,24 @@ class View {
         let persons = [];
 
         array.forEach(person => {
-            let row = document.createElement('tr');
-            let userCard = document.createElement('td');
+            const row = document.createElement('tr');
+            const userCard = document.createElement('td');
             userCard.innerText = `Age:${person.age}, ${person.FandLName}, health:${person.health}%, money:${person.money}$, gender:${person.gender}`;
             person.passed === 1 && (userCard.style.border = '1px solid #FF9305'); 
-            persons.push(userCard);
-            let policeDep = document.createElement('td');
+            
+            const policeDep = document.createElement('td');
             policeDep.append(this.createLights(2, 1));
-            let medicalDep = document.createElement('td');
+            
+            const medicalDep = document.createElement('td');
             medicalDep.append(this.createLights(2, 2));
-            let financeDep = document.createElement('td');
+
+            const financeDep = document.createElement('td');
             financeDep.append(this.createLights(2, 3));
-            let passportDep = document.createElement('td');
+
+            const passportDep = document.createElement('td');
             passportDep.append(this.createLights(2, 4));
-            let embassy = document.createElement('td');
+
+            const embassy = document.createElement('td');
             embassy.append(this.createLights(1, 5));
             persons.push(row, userCard, policeDep, medicalDep, financeDep, passportDep, embassy);
         });
