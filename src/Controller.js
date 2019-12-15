@@ -17,17 +17,19 @@ class Controller {
             let health = Math.floor(Math.random() * (inputs.maxHealth - inputs.minHealth) + inputs.minHealth);
             let money = Math.floor(Math.random() * (inputs.maxMoney - inputs.minMoney) + inputs.minMoney);
             let offenses = Math.floor(Math.random() * (inputs.maxOffenses - inputs.minOffenses) + inputs.minOffenses);
-            
-            this.createPerson(age, health, money, offenses, i);
+            let gender = ['male', 'female'][Math.floor(Math.random() * (2) + 0)];
+            let FandLname = '';
+
+            this.createPerson(age, health, money, offenses, gender, FandLname, i);
         }
         
         this.refreshTable();
     }
 
-    createPerson = (age, health, money, offenses, i) => {
+    createPerson = (age, health, money, offenses, gender, FandLname, i) => {
         let person = {
-            FandLname: '',
-            gender: '',
+            FandLname: FandLname,
+            gender: gender,
             age: age,
             health: health,
             money: money,
@@ -41,7 +43,9 @@ class Controller {
     createOnePerson = inputs => {
         let index = this._model.getPersons().length;
 
-        this.createPerson(inputs.age, inputs.health, inputs.money, inputs.offenses, index);
+        let FandLname = `${inputs.firstName}` + ` ${inputs.lastName}`;
+
+        this.createPerson(inputs.age, inputs.health, inputs.money, inputs.offenses, inputs.gender, FandLname, index);
         this.refreshTable();
     }
 
@@ -54,6 +58,7 @@ class Controller {
     refreshTable = () => {
         this._view.rowsConstucting(this._model.getPersons());
     }
+
 }
 
 export default Controller;
