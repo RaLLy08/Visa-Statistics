@@ -5,17 +5,25 @@ class View {
     
     init = () => {
         const wrapper = document.createElement('div');
+
         wrapper.classList.add('wrapper');
         
         const wrapperGenerator = document.createElement('div');
+
         wrapperGenerator.classList.add('wrapper__generator');
         wrapper.append(wrapperGenerator);
 
         const wrapperSimulator = document.createElement('div');
+
         wrapperSimulator.classList.add('wrapper__simulator');
         wrapper.append(wrapperSimulator);
 
-        const generatorInputs = this.createInputs([
+        const wrapperAddHuman = document.createElement('div');
+
+        wrapperAddHuman.classList.add('wrapper__add-human');
+        wrapper.append(wrapperAddHuman);
+
+        const generatorInputs = this.inputsCreating([
             {type: 'number', placeholder: 'number of people', required: true }, 
             {type: 'number', placeholder: 'min age', required: true }, 
             {type: 'number', placeholder: 'max age', required: true }, 
@@ -27,7 +35,7 @@ class View {
             {type: 'number', placeholder: 'max offenses', required: true }
         ]);
 
-        const simInputs = this.createInputs([
+        const simInputs = this.inputsCreating([
             {type: 'number', placeholder: 'Min age'}, 
             {type: 'text', placeholder: 'Min health'}, 
             {type: 'number', placeholder: 'Max offenses'},
@@ -35,20 +43,7 @@ class View {
             {type: 'number', placeholder: 'Max money'}
         ]);
 
-        wrapperGenerator.append(...generatorInputs);
-        wrapperSimulator.append(...simInputs);
-
-        const buttonGenerator = this.buttonCreate('generate', 'Generate');
-        wrapperGenerator.append(buttonGenerator);
-        
-        const buttonSimulator = this.buttonCreate('simulate', 'Simulate');
-        wrapperSimulator.append(buttonSimulator);
-
-        const wrapperAddHuman = document.createElement('div');
-        wrapperAddHuman.classList.add('wrapper__add-human');
-        wrapper.append(wrapperAddHuman);
-
-        const addInputs = this.createInputs([
+        const addInputs = this.inputsCreating([
             {type: 'text', placeholder: 'Name', required: true},
             {type: 'text', placeholder: 'Surname', required: true},
             {type: 'radio', id: 'male', text: 'Male'},
@@ -59,23 +54,38 @@ class View {
             {type: 'number', placeholder: 'Offenses', required: true},
         ]);
 
+        wrapperGenerator.append(...generatorInputs);
+        wrapperSimulator.append(...simInputs);
         wrapperAddHuman.append(...addInputs);
 
-        const buttonAddPeople = this.buttonCreate('add-person', 'Add Person');
+        const buttonGenerator = this.buttonCreating('generate', 'Generate');
+
+        wrapperGenerator.append(buttonGenerator);
+        
+        const buttonSimulator = this.buttonCreating('simulate', 'Simulate');
+
+        wrapperSimulator.append(buttonSimulator);
+
+        const buttonAddPeople = this.buttonCreating('add-person', 'Add Person');
+
         wrapperAddHuman.append(buttonAddPeople);
 
         const wrapperTableList = document.createElement('div');
+
         wrapperTableList.classList.add('wrapper__table-list');
         wrapper.append(wrapperTableList);
 
         const tableListTable = document.createElement('table');
+
         tableListTable.classList.add('table-list__table');
         wrapperTableList.append(tableListTable);
 
         const tableHead = document.createElement('thead');
+
         tableListTable.append(tableHead);
 
         const headTr = document.createElement('tr');
+
         tableHead.append(headTr);
 
         const TdCard = document.createElement('th');
@@ -101,19 +111,21 @@ class View {
         this._root.append(wrapper);
     }
 
-    buttonCreate = (id, name) => {
+    buttonCreating = (id, name) => {
         const button = document.createElement('button');
+
         button.id = id;
         button.textContent = name;
 
         return button;
     }
 
-    createInputs = array => {
+    inputsCreating = array => {
         let inputs = [];
 
         array.forEach(object => {
             const input = document.createElement('input');
+
             input.setAttribute('type', (object.type || 'text'));
             input.setAttribute('placeholder', object.placeholder);
             object.id && (input.setAttribute('id', object.id));
@@ -129,7 +141,7 @@ class View {
         return inputs;
     }
 
-    consructRows = array => {
+    rowsConstucting = array => {
         array.forEach(person => {
             const row = document.createElement('tr');
             const userCard = document.createElement('td');
@@ -138,19 +150,19 @@ class View {
             person.passed === 1 && (userCard.style.border = '1px solid #FF9305'); 
             const policeDep = document.createElement('td');
 
-            policeDep.append(this.createLights(2, 1));
+            policeDep.append(this.lightsCreating(2, 1));
             const medicalDep = document.createElement('td');
 
-            medicalDep.append(this.createLights(2, 2));
+            medicalDep.append(this.lightsCreating(2, 2));
             const financeDep = document.createElement('td');
 
-            financeDep.append(this.createLights(2, 3));
+            financeDep.append(this.lightsCreating(2, 3));
             const passportDep = document.createElement('td');
 
-            passportDep.append(this.createLights(2, 4));
+            passportDep.append(this.lightsCreating(2, 4));
             const embassy = document.createElement('td');
 
-            embassy.append(this.createLights(1, 5));
+            embassy.append(this.lightsCreating(1, 5));
 
             const personRow = [row, userCard, policeDep, medicalDep, financeDep, passportDep, embassy];
             
@@ -158,13 +170,15 @@ class View {
         });
     }
     
-    createLights = (how, id) => {
+    lightsCreating = (how, id) => {
         const lights = document.createElement('ul');
+
         lights.setAttribute('id', id);
         lights.classList.add('indicator__lights');
         
         for (let i = 0; i < how; i++) {
             const round = document.createElement('li');
+
             lights.append(round);
         }
 

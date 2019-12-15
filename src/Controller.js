@@ -1,6 +1,5 @@
 class Controller {
-
-    constructor (view, model) {
+    constructor(view, model) {
         this._model = model;
         this._view = view;
 
@@ -25,8 +24,8 @@ class Controller {
 
     createPerson = (age, health, money, offenses, i) => {
         let person = {
-            FandLname: "",
-            gender: "",
+            FandLname: '',
+            gender: '',
             age: age,
             health: health,
             money: money,
@@ -35,7 +34,8 @@ class Controller {
             section: 0,
             passed: 0,
             index: i,
-        }
+        };
+
         this._model.addPerson(person);
     }
 }
