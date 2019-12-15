@@ -170,9 +170,9 @@ class View {
         array.forEach(person => {
             const row = document.createElement('tr');
             const userCard = document.createElement('td');
-            
-            userCard.innerText = `Age:${person.age}, ${person.FandLName}, health:${person.health}%, money:${person.money}$, offenses:${person.offenses}, gender:${person.gender}`;
-            person.passed === 1 && (userCard.style.border = '1px solid #FF9305'); 
+
+            userCard.id = person.index;
+            userCard.innerText = `Age:${person.age}, ${person.FandLName}, health:${person.health}%, money:${person.money}$, offenses:${person.offenses}, gender:${person.gender}`; 
             const policeDep = document.createElement('td');
 
             policeDep.append(this.lightsCreating(2, +('1' + `${person.index}`)));
