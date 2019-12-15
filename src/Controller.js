@@ -21,7 +21,7 @@ class Controller {
             this.createPerson(age, health, money, offenses, i);
         }
         
-        this._view.rowsConstucting(this._model.getPersons());
+        this.refreshTable();
     }
 
     createPerson = (age, health, money, offenses, i) => {
@@ -42,14 +42,17 @@ class Controller {
         let index = this._model.getPersons().length;
 
         this.createPerson(inputs.age, inputs.health, inputs.money, inputs.offenses, index);
-        this._view.rowsConstucting(this._model.getPersons());
+        this.refreshTable();
     }
 
     lightsChanging = (index, departament, section, failed = true) => {   
         let rowAndStr = +(`${departament}` + `${index}`);
         
-        this._view.changeLightColor(rowAndStr, section, failed);
-        
+        this._view.changeLightColor(rowAndStr, section, failed); 
+    }
+
+    refreshTable = () => {
+        this._view.rowsConstucting(this._model.getPersons());
     }
 }
 
