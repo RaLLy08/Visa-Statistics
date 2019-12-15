@@ -15,14 +15,14 @@ class Controller {
     }
 
     createRandomPersons = inputs => {
-        for (let i = 0; i < inputs.numOfPeople; i++ ) {
+        let fakerator = require('fakerator')();
 
+        for (let i = 0; i < inputs.numOfPeople; i++ ) {
             let age = Math.floor(Math.random() * (inputs.maxAge - inputs.minAge) + inputs.minAge);
             let health = Math.floor(Math.random() * (inputs.maxHealth - inputs.minHealth) + inputs.minHealth);
             let money = Math.floor(Math.random() * (inputs.maxMoney - inputs.minMoney) + inputs.minMoney);
             let offenses = Math.floor(Math.random() * (inputs.maxOffenses - inputs.minOffenses) + inputs.minOffenses);
             let gender = ['male', 'female'][Math.floor(Math.random() * 2)];
-            let fakerator = require('fakerator')();
             let FandLname = '';
 
             if (gender === 'female') {
