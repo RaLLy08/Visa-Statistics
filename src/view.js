@@ -124,22 +124,22 @@ class View {
             const userCard = document.createElement('td');
             userCard.innerText = `Age:${person.age}, ${person.FandLName}, health:${person.health}%, money:${person.money}$, gender:${person.gender}`;
             person.passed === 1 && (userCard.style.border = '1px solid #FF9305'); 
-            
             const policeDep = document.createElement('td');
+
             policeDep.append(this.createLights(2, 1));
-            
             const medicalDep = document.createElement('td');
+
             medicalDep.append(this.createLights(2, 2));
-
             const financeDep = document.createElement('td');
+
             financeDep.append(this.createLights(2, 3));
-
             const passportDep = document.createElement('td');
-            passportDep.append(this.createLights(2, 4));
 
+            passportDep.append(this.createLights(2, 4));
             const embassy = document.createElement('td');
-            embassy.append(this.createLights(1, 5));
             
+            embassy.append(this.createLights(1, 5));
+
             persons.push(row, userCard, policeDep, medicalDep, financeDep, passportDep, embassy);
         });
                        
