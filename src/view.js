@@ -172,7 +172,6 @@ class View {
             const userCard = document.createElement('td');
 
             userCard.id = person.index;
-            
             userCard.innerText = `Age:${person.age}, ${person.FandLName}, health:${person.health}%, money:${person.money}$, offenses:${person.offenses}, gender:${person.gender}`; 
             const policeDep = document.createElement('td');
 
