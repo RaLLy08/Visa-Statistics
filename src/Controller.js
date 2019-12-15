@@ -30,9 +30,6 @@ class Controller {
             health: health,
             money: money,
             offenses: offenses,
-            departament: 0,
-            section: 0,
-            passed: 0,
             index: i,
         };
 
