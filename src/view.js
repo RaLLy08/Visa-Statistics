@@ -82,17 +82,6 @@ class View {
         headTr.append(TdDepPass);
         headTr.append(TdDepGav);
 
-        // const tableBody = document.createElement('tbody'); // другая задача блокировала мою, это макет.
-        // tableListTable.append(tableBody);
-        // [
-        //     {age: 12, health: 80, money: 500, offenses: 3, 
-        //     FandLName: 'Vasiya Pupkin', departaments: 0, section: 0, passed: 0, index: 0,
-        //     gender: 'man'},
-        //     {age: 37, health: 90, money: 500, offenses: 3, 
-        //     FandLName: 'Asya Pupkina', departaments: 0, section: 0, passed: 1, index: 0,
-        //     gender: 'woman'}
-        // ] такой массив будет принимат constructRow([array])
-
         const rows = this.consructRows(array);
         tableBody.append(...rows);
 
@@ -150,6 +139,7 @@ class View {
 
             const embassy = document.createElement('td');
             embassy.append(this.createLights(1, 5));
+            
             persons.push(row, userCard, policeDep, medicalDep, financeDep, passportDep, embassy);
         });
                        
