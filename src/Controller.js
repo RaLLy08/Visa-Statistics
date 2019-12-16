@@ -20,6 +20,7 @@ class Controller {
     }
 
     startSimulation = (simulate) => {
+        this.refreshTable();
         let array = this._model.getPersons();
 
         array.forEach(element => {
