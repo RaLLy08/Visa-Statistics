@@ -163,6 +163,7 @@ class View {
                 inputs.push(input);
             } else {
                 const check = document.createElement('div');
+                
                 check.setAttribute('class', 'check');
                 const label = document.createElement('label');
 
