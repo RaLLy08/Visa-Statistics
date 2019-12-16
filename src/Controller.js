@@ -5,6 +5,7 @@ class Controller {
         this._model = model;
         this._view = view;
         this._fakerator = new Facerator;
+        this._passed = 0;
 
         this.init();
     }
@@ -212,13 +213,27 @@ class Controller {
             }
         }, inputs).then(() => { 
             this.lightsChanging(inputs.index, 4, 2);
-            this.passportSecondSection(inputs, simulate);
+            this.embassyVisa(inputs);
         }).catch(() => {
             this.lightsChanging(inputs.index, 4, 2, false);
         });
     }
     
+    embassyVisa = (inputs) => {
+        let time = Math.floor(Math.random() * 9000 + 1000);
+
+        this._passed += 1;
+        setTimeout(() => {
+            if (this._passed === 1) {
+                this.markPerson(inputs.index);
+            }
+            this.lightsChanging(inputs.index, 5, 1);
+        }, time); 
+    }
+
+    markPerson = (index) => {
+        this._view.markPerson(index);
+    }
 }   
 
 export default Controller;
-//минимум для банка рандом 500 - 1000 максимум 5000-10000
