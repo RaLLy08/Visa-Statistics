@@ -17,7 +17,8 @@ class Controller {
         this._view.onSubmitAddHuman(this.createOnePerson);
     }
 
-    createRandomPersons = inputs => {
+    createRandomPersons = inputs => { //получаем готовый массив
+        this.updateData();
 
         for (let i = 0; i < inputs.numOfPeople; i++ ) {
             let age = Math.floor(Math.random() * (inputs.maxAge - inputs.minAge) + inputs.minAge);
@@ -75,6 +76,9 @@ class Controller {
         this._view.rowsConstucting(this._model.getPersons());
     }
 
+    updateData = () => {
+        this._model.clearAll();
+    }
 }
 
 export default Controller;
