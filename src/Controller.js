@@ -12,12 +12,12 @@ class Controller {
     init = () => {
         this._view.init();
         
-        this._view.onSubmitGenerate(this.createRandomPersons);
+        this._view.onSubmitGenerate(this.addRandomPersons);
         this._view.onSubmitSimulate(el => console.log(el));
-        this._view.onSubmitAddHuman(this.createOnePerson);
+        this._view.onSubmitAddHuman(this.addOnePerson);
     }
 
-    createRandomPersons = inputs => { //получаем готовый массив
+    addRandomPersons = inputs => { //получаем готовый массив
         this.clearPersons();
 
         for (let i = 0; i < inputs.numOfPeople; i++ ) {
@@ -54,7 +54,7 @@ class Controller {
         this._model.addPerson(person);
     }
 
-    createOnePerson = inputs => {
+    addOnePerson = inputs => {
         let index = this._model.getPersons().length;
 
         let FandLname = `${inputs.firstName}` + ` ${inputs.lastName}`;

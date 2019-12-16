@@ -15,12 +15,6 @@ class Model {
         this._persons.push(person);
     }
 
-    setPersons = (array) => {
-        this._persons = array;
-    }
-
-    changePerson = (person, index) => {
-        this._persons.splice(index, 1, person);
-    }
 }
+
 export default Model;
