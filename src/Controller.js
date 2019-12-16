@@ -231,9 +231,9 @@ class Controller {
     embassyVisa = (inputs) => {
         let time = Math.floor(Math.random() * 9000 + 1000);
 
-        this._passed += 1;
         setTimeout(() => {
             if (this._passed === 1) {
+                this._passed += 1;
                 this.markPerson(inputs.index);
             }
             this.lightsChanging(inputs.index, 5, 1);
