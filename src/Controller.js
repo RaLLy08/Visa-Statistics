@@ -81,6 +81,39 @@ class Controller {
         this._model.clearAll();
     }
 
+    policeFirstSection = (inputs, simulate = false) => {
+        let maxOffenses = Math.floor(Math.random() * 10);
+        let time = Math.floor(Math.random() * 9000 + 1000);
+        
+        simulate && (maxOffenses = simulate.maxOffenses);
+                         
+        new Promise((resolve, reject) => {
+            if (inputs.offenses > maxOffenses) {
+                setTimeout(() => reject(new Error()), time); 
+            } else {
+                setTimeout(() => resolve(), time); 
+            }
+        }, inputs).then(() => { 
+            this.lightsChanging(inputs.index, 1, 1);
+            this.policeSecondSection(inputs, simulate);
+        }).catch(() => {
+            this.lightsChanging(inputs.index, 1, 1, false);
+        });
+        
+    }
+
+    policeSecondSection = (inputs, simulate = false) => {
+        let time = Math.floor(Math.random() * 9000 + 1000);
+                         
+        new Promise((resolve) => {
+            setTimeout(() => resolve(), time); 
+        }, inputs).then(() => { 
+            this.lightsChanging(inputs.index, 1, 2);
+            this.hospitalSecondSection(inputs, simulate);
+        });
+        
+    }
+
     bankFirstSection = (inputs, simulate = false) => {
         let minMoney = Math.floor(Math.random() * 500 + 500);
         let time = Math.floor(Math.random() * 9000 + 1000);
