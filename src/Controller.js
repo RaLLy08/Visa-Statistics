@@ -82,6 +82,7 @@ class Controller {
     }
 
     refreshTable = () => {
+        this._passed = 0;
         this._view.tableBodyRemove('persons__list');
         this._view.tableBodyCreate('persons__list');
         this._view.rowsConstucting(this._model.getPersons());
