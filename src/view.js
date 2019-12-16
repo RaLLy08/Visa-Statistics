@@ -10,36 +10,41 @@ class View {
         const wrapper = document.createElement('div');
 
         wrapper.classList.add('wrapper');
-        
-        const wrapperGenerator = document.createElement('div');
 
-        wrapperGenerator.classList.add('wrapper__generator');
-        wrapper.append(wrapperGenerator);
+        const wrapperControllers = document.createElement('div');
+
+        wrapperControllers.classList.add('wrapper__controllers');
+        wrapper.append(wrapperControllers);
+        
+        const controllersGenerator = document.createElement('div');
+
+        controllersGenerator.classList.add('controllers__generator');
+        wrapperControllers.append(controllersGenerator);
 
         const generatorForm = document.createElement('form');
 
         generatorForm.id = 'genForm';
-        wrapperGenerator.append(generatorForm);
+        controllersGenerator.append(generatorForm);
 
-        const wrapperSimulator = document.createElement('div');
+        const controllersSimulator = document.createElement('div');
 
-        wrapperSimulator.classList.add('wrapper__simulator');
-        wrapper.append(wrapperSimulator);
+        controllersSimulator.classList.add('controllers__simulator');
+        wrapperControllers.append(controllersSimulator);
 
         const simulatorForm = document.createElement('form');
 
         simulatorForm.id = 'simForm';
-        wrapperSimulator.append(simulatorForm);
+        controllersSimulator.append(simulatorForm);
 
-        const wrapperAddHuman = document.createElement('div');
+        const controllersAddHuman = document.createElement('div');
 
-        wrapperAddHuman.classList.add('wrapper__add-human');
-        wrapper.append(wrapperAddHuman);
+        controllersAddHuman.classList.add('controllers__add-human');
+        wrapperControllers.append(controllersAddHuman);
 
         const addHumanForm = document.createElement('form');
 
         addHumanForm.id = 'addHumanForm';
-        wrapperAddHuman.append(addHumanForm);
+        controllersAddHuman.append(addHumanForm);
 
         const generatorInputs = this.inputsCreating([
             {type: 'number', name: 'numOfPeople', placeholder: 'Number of people', required: true }, 
@@ -50,7 +55,7 @@ class View {
             {type: 'number', name: 'minMoney', placeholder: 'Min money', required: true },
             {type: 'number', name: 'maxMoney', placeholder: 'Max money', required: true },
             {type: 'number', name: 'minOffenses', placeholder: 'Min offenses', required: true },
-            {type: 'number', name: 'maxOffenses', placeholder: 'max offenses', required: true }
+            {type: 'number', name: 'maxOffenses', placeholder: 'Max offenses', required: true }
         ]);
 
         const simInputs = this.inputsCreating([
@@ -153,15 +158,20 @@ class View {
             object.name && (input.setAttribute('name', object.name));
             object.placeholder && input.setAttribute('placeholder', object.placeholder);
             object.required && (input.required = 'required');
-
-            inputs.push(input);
             
-            if (object.type === 'radio') {
+            if (!(object.type === 'radio')){
+                inputs.push(input);
+            } else {
+                const check = document.createElement('div');
+                check.setAttribute('class', 'check');
                 const label = document.createElement('label');
 
                 label.innerText = object.text;
+                
+                check.append(input);
+                check.append(label);
 
-                inputs.push(label);
+                inputs.push(check);
             }
         });
 
@@ -188,7 +198,7 @@ class View {
             const userCard = document.createElement('td');
 
             userCard.id = person.index;
-            userCard.innerText = `Age:${person.age}, ${person.FandLname}, health:${person.health}%, money:${person.money}$, offenses:${person.offenses}, gender:${person.gender}`; 
+            userCard.innerText = `Age: ${person.age}, ${person.FandLname}, Health: ${person.health}%, Money: ${person.money}$, Offenses: ${person.offenses}, Gender: ${person.gender}`; 
             const policeDep = document.createElement('td');
 
             policeDep.append(this.lightsCreating(2, +('1' + `${person.index}`)));

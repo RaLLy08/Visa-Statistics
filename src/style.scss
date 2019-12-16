@@ -1,3 +1,7 @@
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
 .indicator__lights {
     list-style-type: none;
 
@@ -9,4 +13,86 @@
         border: 3px solid #989898;
         border-radius: 15px;
     }
+}
+
+.wrapper__controllers {
+    display: flex;
+
+    [class^="controllers"] {
+        width: 33.33%;
+        border: 2px solid #1a89ff;
+        margin: 0 20px;
+        padding: 15px 0;
+        border-radius: .25rem;
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 0 50px;
+
+            input {
+                padding: .375rem .75rem;
+                margin: 15px 0;
+                font-size: 1rem;
+                line-height: 1.5;
+                color: #495057;
+                border: 1px solid #ced4da;
+                border-radius: .25rem;
+            }
+
+            button {
+                color: #fff;
+                text-align: center;
+                cursor: pointer;
+                background-color: #1a89ff;
+                border: 1px solid #0572e6;
+                padding: .375rem .75rem;
+                margin: 15px 0;
+                font-size: 1rem;
+                line-height: 1.5;
+                border-radius: .25rem;
+            }
+
+            button:hover {
+                color: #1a89ff;
+                background-color: #fff;
+            }
+
+            .check {
+                position: relative;
+                display: block;
+                padding-left: 15px;
+                padding-top: 12px;
+
+                label {
+                    padding-left: 5px;
+                }
+            }
+        }
+    }
+}
+
+.wrapper__table-list {
+    margin-top: 50px;
+
+    .table-list__table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        border-collapse: collapse;
+    
+        thead th {
+            color: #fff;
+            background-color: #1a89ff;
+            padding: .75rem;
+        }
+
+        tbody td {
+            padding: .75rem;
+            vertical-align: middle;
+            border-top: 1px solid #dee2e6;
+        }
+    }
+
 }
