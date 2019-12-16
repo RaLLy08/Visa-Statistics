@@ -9,7 +9,7 @@ class Controller {
 
         this.init();
     }
-
+    
     init = () => {
         this._view.init();
         
@@ -245,3 +245,4 @@ class Controller {
 }   
 
 export default Controller;
+//
