@@ -279,8 +279,13 @@ class View {
                 }
 
                 let simObj = Object.fromEntries(map.entries());
+                let checkEmpty = 0;
 
-                callback(simObj);
+                for (const key in simObj) {
+                    checkEmpty += simObj[key];
+                }
+
+                checkEmpty ? callback(simObj) : callback(false);
             }
         };
     }
