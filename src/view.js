@@ -202,18 +202,23 @@ class View {
             const policeDep = document.createElement('td');
 
             policeDep.append(this.lightsCreating(2, +('1' + `${person.index}`)));
+            policeDep.append(this.sectionTitleCreating(2, ['Crime check', 'Signature of document']));
             const medicalDep = document.createElement('td');
 
             medicalDep.append(this.lightsCreating(2, +('2' + `${person.index}`)));
+            medicalDep.append(this.sectionTitleCreating(2, ['Paperwork', 'Health check']));
             const financeDep = document.createElement('td');
 
             financeDep.append(this.lightsCreating(2, +('3' + `${person.index}`)));
+            financeDep.append(this.sectionTitleCreating(2, ['Min amount check', 'Max amount check']));
             const passportDep = document.createElement('td');
 
             passportDep.append(this.lightsCreating(2, +('4' + `${person.index}`)));
+            passportDep.append(this.sectionTitleCreating(2, ['Paperwork', 'Age check']));
             const embassy = document.createElement('td');
 
             embassy.append(this.lightsCreating(1, +('5' + `${person.index}`)));
+            embassy.append(this.sectionTitleCreating(1, ['Visa issuance']));
 
             const personRow = [userCard, policeDep, medicalDep, financeDep, passportDep, embassy];
 
@@ -235,6 +240,19 @@ class View {
         }
 
         return lights;
+    }
+
+    sectionTitleCreating = (how, texts) => {
+        const section = document.createElement('ul');
+
+        for (let i = 0; i < how; i++) {
+            const sectionName = document.createElement('li');
+            sectionName.innerText = texts[i];
+
+            section.append(sectionName);
+        }
+
+        return section;
     }
 
     changeLightColor = (whichId, childNode, color = true) => {
@@ -263,6 +281,8 @@ class View {
                 let genObj = Object.fromEntries(map.entries());
 
                 callback(genObj);
+            } else {
+                alert('Please fill all section');
             }
         };
     }
@@ -312,6 +332,8 @@ class View {
                 let addHumanObj = Object.fromEntries(map.entries());
 
                 callback(addHumanObj);
+            } else {
+                alert('Please fill all section');
             }
         };
     }

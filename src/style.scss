@@ -91,7 +91,23 @@
         tbody td {
             padding: .75rem;
             vertical-align: middle;
+            position: relative;
             border-top: 1px solid #dee2e6;
+
+            ul:last-child {
+                list-style-type: none;
+                position: absolute;
+                top: 12px;
+                left: 40px;
+
+                li {
+                    padding-bottom: 10px;
+                }
+            }
+        }
+
+        tbody td:first-child {
+            width: 30%;
         }
     }
 
