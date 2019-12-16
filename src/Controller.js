@@ -166,7 +166,7 @@ class Controller {
         
     }
 
-    bankSecondSection = (inputs, simulate) => {
+    bankSecondSection = (inputs, simulate = false) => {
         let maxMoney = Math.floor(Math.random() * 5000 + 5000);
         let time = Math.floor(Math.random() * 9000 + 1000);
 
