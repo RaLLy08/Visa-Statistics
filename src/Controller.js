@@ -15,6 +15,7 @@ class Controller {
         this._view.onSubmitGenerate(this.addRandomPersons);
         this._view.onSubmitSimulate(el => console.log(el));
         this._view.onSubmitAddHuman(this.addOnePerson);
+
     }
 
     addRandomPersons = inputs => { //получаем готовый массив
@@ -79,6 +80,50 @@ class Controller {
     clearPersons = () => {
         this._model.clearAll();
     }
+
+    bankFirstSection = (inputs, simulate = false) => {
+        let minMoney = Math.floor(Math.random() * 500 + 500);
+        let time = Math.floor(Math.random() * 9000 + 1000);
+
+        simulate && (minMoney = simulate.minMoney);
+                                        
+        new Promise((resolve, reject) => {
+            if (inputs.money < minMoney) {
+                setTimeout(() => reject(new Error()), time); 
+            } else {
+                setTimeout(() => resolve(), time); 
+            }
+        }, inputs).then(() => { 
+            this.lightsChanging(inputs.index, 3, 1);
+            this.bankSecondSection(inputs, simulate);
+        }).catch(() => {
+            this.lightsChanging(inputs.index, 3, 1, false);
+        });
+        
+    }
+
+    bankSecondSection = (inputs, simulate) => {
+        let maxMoney = Math.floor(Math.random() * 5000 + 5000);
+        let time = Math.floor(Math.random() * 9000 + 1000);
+
+        simulate && (maxMoney = simulate.maxMoney);
+                                   
+        new Promise((resolve, reject) => {
+            if (inputs.money > maxMoney) {
+                setTimeout(() => reject(new Error()), time); 
+            } else {
+                setTimeout(() => resolve(), time); 
+            }
+        }, inputs).then(() => { 
+            this.lightsChanging(inputs.index, 3, 2);
+            //переход к следующему департаменту(inputs, simulate);
+        }).catch(() => {
+            this.lightsChanging(inputs.index, 3, 2, false);
+        });
+        
+    }
+
 }
 
 export default Controller;
+//минимум для банка рандом 500 - 1000 максимум 5000-10000
