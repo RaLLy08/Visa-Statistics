@@ -62,22 +62,58 @@ describe('inputsCreating', () => {
     });
 });
 
-// describe('lightsCreating', () => {
-//     let view = null;
+describe('lightsCreating', () => {
+    let view = null;
 
-//     beforeEach(() => {
-//         view = new View();
-//     });
+    beforeEach(() => {
+        view = new View();
+    });
 
-//     // it('should return tag ul, li', () => {
-//     //     const how = 1;
-//     //     const ul = document.createElement('ul');
-//     //     // const li = document.createElement('li');
-//     //     const id = 'tbody';
-//     //     const expected = ul;
+    it('should return tag ul, li', () => {
+        const how = 1;
+        const ul = document.createElement('ul');
+        const li = document.createElement('li');
+        const id = 'tbody';
 
-//     //     const actual = view.lightsCreating(how, id);
+        ul.append(li);
+        ul.classList.add('indicator__lights');
+        ul.id = id;
+        
+        const actual = view.lightsCreating(how, id);
 
-//     //     expect(ul).toEqual(actual);
-//     // });
-// });
+        expect(ul).toEqual(actual);
+    });
+    
+    it('should return tag ul, li, li', () => {
+        const how = 2;
+        const ul = document.createElement('ul');
+        const li = document.createElement('li');
+        const li2 = document.createElement('li');
+        const id = 'tbody';
+
+        ul.append(li, li2);
+        ul.classList.add('indicator__lights');
+        ul.id = id;
+
+        const actual = view.lightsCreating(how, id);
+
+        expect(ul).toEqual(actual);
+    });
+    
+    it('should return tag ul, li, li', () => {
+        const how = 2;
+        const ul = document.createElement('ul');
+        const li = document.createElement('li');
+        const li2 = document.createElement('li');
+        const id = 'tbody';
+
+        ul.append(li, li2);
+        ul.classList.add('indicator__lights');
+        ul.id = id;
+
+        const actual = view.lightsCreating(how, id);
+
+        expect(ul).toEqual(actual);
+    });
+});
+
