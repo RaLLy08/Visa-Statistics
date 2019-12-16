@@ -180,14 +180,45 @@ class Controller {
             }
         }, inputs).then(() => { 
             this.lightsChanging(inputs.index, 3, 2);
-            //переход к следующему департаменту(inputs, simulate);
+            this.passportFirstSection(inputs, simulate);
         }).catch(() => {
             this.lightsChanging(inputs.index, 3, 2, false);
         });
         
     }
 
-}
+    passportFirstSection = (inputs, simulate = false) => {
+        let time = Math.floor(Math.random() * 9000 + 1000);
+                         
+        new Promise((resolve) => {
+            setTimeout(() => resolve(), time); 
+        }, inputs).then(() => { 
+            this.lightsChanging(inputs.index, 4, 1);
+            this.passportSecondSection(inputs, simulate);
+        });
+    }
+
+    passportSecondSection = (inputs, simulate = false) => {
+        let minAge = Math.floor(Math.random() * 5000 + 5000);
+        let time = Math.floor(Math.random() * 9000 + 1000);
+
+        simulate && (minAge = simulate.minAge);
+                                   
+        new Promise((resolve, reject) => {
+            if (inputs.age < minAge) {
+                setTimeout(() => reject(new Error()), time); 
+            } else {
+                setTimeout(() => resolve(), time); 
+            }
+        }, inputs).then(() => { 
+            this.lightsChanging(inputs.index, 4, 2);
+            this.passportSecondSection(inputs, simulate);
+        }).catch(() => {
+            this.lightsChanging(inputs.index, 4, 2, false);
+        });
+    }
+    
+}   
 
 export default Controller;
 //минимум для банка рандом 500 - 1000 максимум 5000-10000
