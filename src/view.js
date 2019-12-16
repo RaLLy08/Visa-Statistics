@@ -197,7 +197,7 @@ class View {
             const row = document.createElement('tr');
             const userCard = document.createElement('td');
 
-            userCard.id = person.index;
+            userCard.id = `${person.index}user`;
             userCard.innerText = `Age: ${person.age}, ${person.FandLname}, Health: ${person.health}%, Money: ${person.money}$, Offenses: ${person.offenses}, Gender: ${person.gender}`; 
             const policeDep = document.createElement('td');
 
@@ -247,6 +247,7 @@ class View {
 
         for (let i = 0; i < how; i++) {
             const sectionName = document.createElement('li');
+
             sectionName.innerText = texts[i];
 
             section.append(sectionName);
@@ -339,7 +340,7 @@ class View {
     }
     
     markPerson = id => {
-        document.getElementById(`${id}`).style.border = '1px solid #FF9305';
+        document.getElementById(`${id}user`).style.border = '1px solid #FF9305';
     }
 }
 
