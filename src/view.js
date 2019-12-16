@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 class View {
     constructor() {
         this._root = document.getElementById('root');
@@ -44,8 +45,8 @@ class View {
             {type: 'number', name: 'numOfPeople', placeholder: 'Number of people', required: true }, 
             {type: 'number', name: 'minAge', placeholder: 'Min age', required: true }, 
             {type: 'number', name: 'maxAge', placeholder: 'Max age', required: true }, 
-            {type: 'text', name: 'minHealth', placeholder: 'Min health', required: true },
-            {type: 'text', name: 'maxHealth', placeholder: 'Max health', required: true },
+            {type: 'number', name: 'minHealth', placeholder: 'Min health', required: true },
+            {type: 'number', name: 'maxHealth', placeholder: 'Max health', required: true },
             {type: 'number', name: 'minMoney', placeholder: 'Min money', required: true },
             {type: 'number', name: 'maxMoney', placeholder: 'Max money', required: true },
             {type: 'number', name: 'minOffenses', placeholder: 'Min offenses', required: true },
@@ -54,7 +55,7 @@ class View {
 
         const simInputs = this.inputsCreating([
             {type: 'number', name: 'minAge', placeholder: 'Min age'}, 
-            {type: 'text', name: 'minHealth', placeholder: 'Min health'}, 
+            {type: 'number', name: 'minHealth', placeholder: 'Min health'}, 
             {type: 'number', name: 'maxOffenses', placeholder: 'Max offenses'},
             {type: 'number', name: 'minMoney', placeholder: 'Min money'},
             {type: 'number', name: 'maxMoney', placeholder: 'Max money'}
@@ -66,7 +67,7 @@ class View {
             {type: 'radio', value: 'male', name: 'gender', text: 'Male'},
             {type: 'radio', value: 'female', name: 'gender', text: 'Female'},
             {type: 'number', name: 'age', placeholder: 'Age', required: true},
-            {type: 'text', name: 'health', placeholder: 'Health', required: true},
+            {type: 'number', name: 'health', placeholder: 'Health', required: true},
             {type: 'number', name: 'money', placeholder: 'Money', required: true},
             {type: 'number', name: 'offenses', placeholder: 'Offenses', required: true},
         ]);
@@ -246,14 +247,14 @@ class View {
                 let map = new Map();
 
                 for (let i = 0; i < genForm.elements.length - 1; i++) {
-                    map.set(genForm.elements[i].name, genForm.elements[i].value);
+                    map.set(genForm.elements[i].name, +genForm.elements[i].value);
                 }
 
                 let genObj = Object.fromEntries(map.entries());
 
                 callback(genObj);
             }
-        }
+        };
     }
 
     onSubmitSimulate = callback => {
@@ -264,14 +265,14 @@ class View {
                 let map = new Map();
 
                 for (let i = 0; i < simForm.elements.length - 1; i++) {
-                    map.set(simForm.elements[i].name, simForm.elements[i].value);
+                    map.set(simForm.elements[i].name, +simForm.elements[i].value);
                 }
 
                 let simObj = Object.fromEntries(map.entries());
 
                 callback(simObj);
             }
-        }
+        };
     }
 
     onSubmitAddHuman = callback => {
@@ -282,19 +283,22 @@ class View {
                 let map = new Map();
 
                 for (let i = 0; i < addHumanForm.elements.length - 1; i++) {
+                    let val;
+
+                    addHumanForm.elements[i].type === 'number' ? val = +addHumanForm.elements[i].value : val = addHumanForm.elements[i].value;
                     
                     if (addHumanForm.elements[i].name === 'gender' && !addHumanForm.elements[i].checked) {
                         continue;
                     }
 
-                    map.set(addHumanForm.elements[i].name, addHumanForm.elements[i].value);
+                    map.set(addHumanForm.elements[i].name, val);
                 }
 
                 let addHumanObj = Object.fromEntries(map.entries());
 
                 callback(addHumanObj);
             }
-        }
+        };
     }
     
     markPerson = id => {
