@@ -18,7 +18,7 @@ class Controller {
     }
 
     createRandomPersons = inputs => { //получаем готовый массив
-        this.clearData();
+        this.clearPersons();
 
         for (let i = 0; i < inputs.numOfPeople; i++ ) {
             let age = Math.floor(Math.random() * (inputs.maxAge - inputs.minAge) + inputs.minAge);
@@ -76,7 +76,7 @@ class Controller {
         this._view.rowsConstucting(this._model.getPersons());
     }
 
-    clearData = () => {
+    clearPersons = () => {
         this._model.clearAll();
     }
 }
