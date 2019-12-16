@@ -109,9 +109,40 @@ class Controller {
             setTimeout(() => resolve(), time); 
         }, inputs).then(() => { 
             this.lightsChanging(inputs.index, 1, 2);
+            this.hospitalFirstSection(inputs, simulate);
+        });
+    }
+
+    hospitalFirstSection = (inputs, simulate = false) => {
+        let time = Math.floor(Math.random() * 9000 + 1000);
+                         
+        new Promise((resolve) => {
+            setTimeout(() => resolve(), time); 
+        }, inputs).then(() => { 
+            this.lightsChanging(inputs.index, 2, 1);
             this.hospitalSecondSection(inputs, simulate);
         });
+    }
+
+    hospitalSecondSection = (inputs, simulate = false) => {
+        let minHealth = Math.floor(Math.random() * 20 + 30);
+        let time = Math.floor(Math.random() * 9000 + 1000);
         
+        simulate && (minHealth = simulate.minHealth);
+                         
+        new Promise((resolve, reject) => {
+            if (inputs.health < minHealth) {
+                setTimeout(() => reject(new Error()), time); 
+            } else {
+                setTimeout(() => resolve(), time); 
+            }
+        }, inputs).then(() => { 
+            this.lightsChanging(inputs.index, 2, 2);
+            this. bankFirstSection(inputs, simulate);
+        }).catch(() => {
+            this.lightsChanging(inputs.index, 2, 2, false);
+        }); 
+
     }
 
     bankFirstSection = (inputs, simulate = false) => {
