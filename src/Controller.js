@@ -27,7 +27,7 @@ class Controller {
         });
     }
 
-    addRandomPersons = inputs => { //получаем готовый массив
+    addRandomPersons = inputs => { 
         this.clearPersons();
 
         for (let i = 0; i < inputs.numOfPeople; i++ ) {
