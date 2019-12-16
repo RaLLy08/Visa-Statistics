@@ -232,7 +232,7 @@ class Controller {
         let time = Math.floor(Math.random() * 9000 + 1000);
 
         setTimeout(() => {
-            if (this._passed === 1) {
+            if (this._passed === 0) {
                 this._passed += 1;
                 this.markPerson(inputs.index);
             }
