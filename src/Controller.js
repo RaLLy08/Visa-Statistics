@@ -14,9 +14,17 @@ class Controller {
         this._view.init();
         
         this._view.onSubmitGenerate(this.addRandomPersons);
-        this._view.onSubmitSimulate(el => console.log(el));
+        this._view.onSubmitSimulate(this.startSimulation);
         this._view.onSubmitAddHuman(this.addOnePerson);
 
+    }
+
+    startSimulation = (simulate) => {
+        let array = this._model.getPersons();
+
+        array.forEach(element => {
+            this.policeFirstSection(element, simulate);
+        });
     }
 
     addRandomPersons = inputs => { //получаем готовый массив
