@@ -1,6 +1,7 @@
 class Model {
     constructor() {
         this._persons = [];
+        this._conditions = {minAge: 18, minHealth: 30, maxOffsens: 3, minMoney: 5000, maxMoney: 10000};
     }
 
     clearAll = () => {
