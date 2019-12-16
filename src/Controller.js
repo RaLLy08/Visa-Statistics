@@ -90,7 +90,7 @@ class Controller {
         this._model.clearAll();
     }
 
-    policeFirstSection = (inputs, simulate = false) => {
+    policeFirstSection = (inputs, simulate) => {
         let maxOffenses = Math.floor(Math.random() * 10);
         let time = Math.floor(Math.random() * 9000 + 1000);
         
@@ -111,7 +111,7 @@ class Controller {
         
     }
 
-    policeSecondSection = (inputs, simulate = false) => {
+    policeSecondSection = (inputs, simulate) => {
         let time = Math.floor(Math.random() * 9000 + 1000);
                          
         new Promise((resolve) => {
@@ -122,7 +122,7 @@ class Controller {
         });
     }
 
-    hospitalFirstSection = (inputs, simulate = false) => {
+    hospitalFirstSection = (inputs, simulate) => {
         let time = Math.floor(Math.random() * 9000 + 1000);
                          
         new Promise((resolve) => {
@@ -133,7 +133,7 @@ class Controller {
         });
     }
 
-    hospitalSecondSection = (inputs, simulate = false) => {
+    hospitalSecondSection = (inputs, simulate) => {
         let minHealth = Math.floor(Math.random() * 20 + 30);
         let time = Math.floor(Math.random() * 9000 + 1000);
         
@@ -154,7 +154,7 @@ class Controller {
 
     }
 
-    bankFirstSection = (inputs, simulate = false) => {
+    bankFirstSection = (inputs, simulate) => {
         let minMoney = Math.floor(Math.random() * 500 + 500);
         let time = Math.floor(Math.random() * 9000 + 1000);
 
@@ -175,7 +175,7 @@ class Controller {
         
     }
 
-    bankSecondSection = (inputs, simulate = false) => {
+    bankSecondSection = (inputs, simulate) => {
         let maxMoney = Math.floor(Math.random() * 5000 + 5000);
         let time = Math.floor(Math.random() * 9000 + 1000);
 
@@ -196,7 +196,7 @@ class Controller {
         
     }
 
-    passportFirstSection = (inputs, simulate = false) => {
+    passportFirstSection = (inputs, simulate) => {
         let time = Math.floor(Math.random() * 9000 + 1000);
                          
         new Promise((resolve) => {
@@ -207,7 +207,7 @@ class Controller {
         });
     }
 
-    passportSecondSection = (inputs, simulate = false) => {
+    passportSecondSection = (inputs, simulate) => {
         let minAge = Math.floor(Math.random() * 5000 + 5000);
         let time = Math.floor(Math.random() * 9000 + 1000);
 
